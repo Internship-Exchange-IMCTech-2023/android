@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "575201783375",
+    "project_id": "fefu-blog",
+    "storage_bucket": "fefu-blog.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575201783375:android:91cb20853b3aff6915443a",
+        "android_client_info": {
+          "package_name": "com.example.internshpexchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575201783375-0r19uvvja255ro4jic37o3cjpknc54q1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxTkBW-pEL8JrqFHG_k78D0Bt5A-9VMpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575201783375-0r19uvvja255ro4jic37o3cjpknc54q1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

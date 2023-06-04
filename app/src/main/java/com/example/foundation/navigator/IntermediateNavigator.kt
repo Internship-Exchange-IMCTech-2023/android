@@ -1,5 +1,6 @@
 package com.example.foundation.navigator
 
+import androidx.appcompat.app.AppCompatActivity
 import com.example.foundation.utils.ResourceActions
 import com.example.foundation.views.BaseScreen
 
@@ -13,6 +14,10 @@ class IntermediateNavigator : Navigator {
 
     override fun goBack(result: Any?) = targetNavigator {
         it.goBack(result)
+    }
+
+    override fun <T : AppCompatActivity> replaceActivity(clazz: Class<T>) = targetNavigator {
+        it.replaceActivity(clazz)
     }
 
     fun setTarget(navigator: Navigator?) {

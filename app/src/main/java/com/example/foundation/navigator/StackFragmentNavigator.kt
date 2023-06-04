@@ -1,10 +1,9 @@
 package com.example.foundation.navigator
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.AnimRes
 import androidx.annotation.IdRes
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -13,13 +12,10 @@ import com.example.foundation.ARG_SCREEN
 import com.example.foundation.utils.Event
 import com.example.foundation.views.BaseFragment
 import com.example.foundation.views.BaseScreen
-import com.example.foundation.views.HasCustomTitle
 
 class StackFragmentNavigator(
     private val activity: AppCompatActivity,
-    @StringRes private val defaultToolbarTitleRes: Int,
     @IdRes private val fragmentContainerId: Int,
-    private val animations: Animations,
     private val initialScreenCreator: () -> BaseScreen
 ) : Navigator {
 
@@ -34,6 +30,11 @@ class StackFragmentNavigator(
             this.result = Event(result)
         }
         activity.onBackPressedDispatcher.onBackPressed()
+    }
+
+    override fun <T : AppCompatActivity> replaceActivity(clazz: Class<T>) {
+        activity.startActivity(Intent(activity, clazz))
+        activity.finish()
     }
 
     fun onCreate(savedInstanceState: Bundle?) {
@@ -58,22 +59,6 @@ class StackFragmentNavigator(
         closeScreen()
     }
 
-    fun notifyScreenUpdates() {
-        val f = getCurrentFragment()
-
-        if (activity.supportFragmentManager.backStackEntryCount > 0) {
-            activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        } else {
-            activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        }
-
-        if (f is HasCustomTitle && f.getCustomTitle() != null) {
-            activity.supportActionBar?.title = f.getCustomTitle()
-        } else {
-            activity.supportActionBar?.title = activity.getString(defaultToolbarTitleRes)
-        }
-    }
-
     private fun launchFragment(screen: BaseScreen, addToBackStack: Boolean = true) {
         // creating fragment from screen
         val fragment = screen.javaClass.enclosingClass.newInstance() as Fragment
@@ -82,12 +67,6 @@ class StackFragmentNavigator(
         val transaction = activity.supportFragmentManager.beginTransaction()
         if (addToBackStack) transaction.addToBackStack(null)
         transaction
-            .setCustomAnimations(
-                animations.enter,
-                animations.exit,
-                animations.popEnter,
-                animations.popExit
-            )
             .replace(fragmentContainerId, fragment)
             .commit()
     }
@@ -114,18 +93,10 @@ class StackFragmentNavigator(
             v: View,
             savedInstanceState: Bundle?
         ) {
-            notifyScreenUpdates()
             publishResults(f)
         }
     }
 
     private fun getCurrentFragment(): Fragment? =
         activity.supportFragmentManager.findFragmentById(fragmentContainerId)
-
-    class Animations(
-        @AnimRes val enter: Int,
-        @AnimRes val exit: Int,
-        @AnimRes val popEnter: Int,
-        @AnimRes val popExit: Int
-    )
 }

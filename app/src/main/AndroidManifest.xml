@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,14 +14,24 @@
         android:theme="@style/Theme.InternshpExchange"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".views.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".views.GuideActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.loginactivity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.mainactivity.MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
