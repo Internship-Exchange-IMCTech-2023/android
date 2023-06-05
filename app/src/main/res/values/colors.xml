@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="my_light_primary">#9FD333</color>
+    <color name="my_light_surface">#F9FFD7</color>
+
+    <color name="accepted">#9FD333</color>
+    <color name="refuded">#FA6342</color>
+    <color name="considered">#767676</color>
 </resources>

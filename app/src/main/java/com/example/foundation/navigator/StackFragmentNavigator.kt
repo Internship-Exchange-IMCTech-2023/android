@@ -12,10 +12,17 @@ import com.example.foundation.ARG_SCREEN
 import com.example.foundation.utils.Event
 import com.example.foundation.views.BaseFragment
 import com.example.foundation.views.BaseScreen
+import com.example.internshpexchange.R
+import com.example.internshpexchange.views.mainactivity.messages.MessagesFragment
+import com.example.internshpexchange.views.mainactivity.profile.ProfileFragment
+import com.example.internshpexchange.views.mainactivity.responses.ResponsesFragment
+import com.example.internshpexchange.views.mainactivity.search.SearchFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class StackFragmentNavigator(
     private val activity: AppCompatActivity,
     @IdRes private val fragmentContainerId: Int,
+    @IdRes private val navMenuId: Int? = null,
     private val initialScreenCreator: () -> BaseScreen
 ) : Navigator {
 
@@ -59,6 +66,20 @@ class StackFragmentNavigator(
         closeScreen()
     }
 
+    private fun notifyScreenUpdates() {
+        val f = getCurrentFragment()
+
+        if (navMenuId == null) return
+        val navMenu = activity.findViewById<BottomNavigationView>(navMenuId)
+
+        when (f) {
+            is MessagesFragment -> navMenu.selectedItemId = R.id.action_messages
+            is ProfileFragment -> navMenu.selectedItemId = R.id.action_profile
+            is ResponsesFragment -> navMenu.selectedItemId = R.id.action_responses
+            is SearchFragment -> navMenu.selectedItemId = R.id.action_search
+        }
+    }
+
     private fun launchFragment(screen: BaseScreen, addToBackStack: Boolean = true) {
         // creating fragment from screen
         val fragment = screen.javaClass.enclosingClass.newInstance() as Fragment
@@ -93,6 +114,7 @@ class StackFragmentNavigator(
             v: View,
             savedInstanceState: Bundle?
         ) {
+            notifyScreenUpdates()
             publishResults(f)
         }
     }

@@ -16,9 +16,6 @@ abstract class BaseFragment : Fragment() {
     /**
      * Call this method when activity controls (e.g. toolbar) should be re-rendered
      */
-    fun notifyScreenUpdates() {
-        (requireActivity() as FragmentHolder).notifyScreenUpdates()
-    }
 
     fun <T> renderResult(root: ViewGroup, result: Result<T>,
                         onPending: () -> Unit,

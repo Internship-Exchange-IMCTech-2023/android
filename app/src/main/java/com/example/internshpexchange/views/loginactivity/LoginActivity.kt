@@ -51,8 +51,6 @@ class LoginActivity : AppCompatActivity(), FragmentHolder {
         super.onDestroy()
     }
 
-    override fun notifyScreenUpdates() {}
-
     override fun getActivityScopeViewModel(): ActivityScopeViewModel = activityViewModel
 
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {

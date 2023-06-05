@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.InternshpExchange" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/my_light_primary</item>
+        <item name="colorSurface">@color/my_light_surface</item>
     </style>
 
     <style name="Theme.InternshpExchange" parent="Base.Theme.InternshpExchange" />
@@ -11,13 +12,19 @@
     <style name="Theme.Splash" parent="Theme.AppCompat">
         <!--        <item name="windowSplashScreenBackground">@color/dark</item>-->
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
-<!--        <item name="windowSplashScreenAnimationDuration">300</item>-->
+        <!--        <item name="windowSplashScreenAnimationDuration">300</item>-->
         <!--        <item name="postSplashScreenTheme">@style/Theme.SplishSplash</item>-->
 
         <!-- Status bar and Nav bar configs -->
         <!--        <item name="android:statusBarColor" >@color/dark</item>-->
         <!--        <item name="android:navigationBarColor">@color/dark</item>-->
         <item name="android:windowLightStatusBar">false</item>
+    </style>
+    
+    <style name="CompanyTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/my_light_primary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ClickableStyle">
